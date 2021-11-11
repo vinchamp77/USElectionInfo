@@ -13,7 +13,8 @@ android {
 
     defaultConfig {
         applicationId "com.androidcafe.uselectioninfo"
-        minSdk 21
+        // min SDK 24 is required for @color reference in ballot_logo.xml
+        minSdk 24
         targetSdk 31
         versionCode 1
         versionName "1.0"
