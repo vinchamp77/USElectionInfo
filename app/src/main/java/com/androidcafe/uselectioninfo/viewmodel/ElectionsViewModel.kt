@@ -1,4 +1,6 @@
 package com.androidcafe.uselectioninfo.viewmodel
 
-class ViewModel {
+import androidx.lifecycle.ViewModel
+
+class ElectionsViewModel : ViewModel() {
 }

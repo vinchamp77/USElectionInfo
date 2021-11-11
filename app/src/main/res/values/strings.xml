@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">US Election Info</string>
+    <!-- launch fragment -->
     <string name="representatives_button_text">Find My Representatives</string>
     <string name="upcoming_elections_button_text">Upcoming Elections</string>
+    <!-- elections fragment -->
+    <string name="saved_elections_text">Saved Elections</string>
+    <string name="upcoming_elections_text">Upcoming Elections</string>
 </resources>

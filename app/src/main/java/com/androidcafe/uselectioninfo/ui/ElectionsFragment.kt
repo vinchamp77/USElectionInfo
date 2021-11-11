@@ -5,11 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.androidcafe.uselectioninfo.databinding.ElectionsFragmentBinding
+import com.androidcafe.uselectioninfo.viewmodel.ElectionsViewModel
 
 class ElectionsFragment: Fragment() {
 
-    //TODO: Declare ViewModel
+    private val viewModel: ElectionsViewModel by viewModels()
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
@@ -17,10 +19,7 @@ class ElectionsFragment: Fragment() {
 
         val binding = ElectionsFragmentBinding.inflate(inflater)
         binding.lifecycleOwner = this
-
-        return binding.root
-
-        //TODO: Add ViewModel values and create ViewModel
+        binding.viewModel = viewModel
 
         //TODO: Add binding values
 
@@ -29,6 +28,8 @@ class ElectionsFragment: Fragment() {
         //TODO: Initiate recycler adapters
 
         //TODO: Populate recycler adapters
+
+        return binding.root
 
     }
 
