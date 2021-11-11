@@ -1,4 +1,4 @@
-package com.example.android.uselectioninfo
+package com.androidcafe.uselectioninfo
 
 import org.junit.Test
 
