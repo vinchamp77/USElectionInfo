@@ -7,8 +7,25 @@
 
     <fragment
         android:id="@+id/launchFragment"
-        android:name="com.androidcafe.uselectioninfo.launch.LaunchFragment"
+        android:name="com.androidcafe.uselectioninfo.ui.LaunchFragment"
         android:label="LaunchFragment"
-        tools:layout="@layout/launch_fragment"/>
+        tools:layout="@layout/launch_fragment">
+        <action
+            android:id="@+id/action_launchFragment_to_electionsFragment"
+            app:destination="@id/electionsFragment" />
+        <action
+            android:id="@+id/action_launchFragment_to_representativesFragment"
+            app:destination="@id/representativesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/electionsFragment"
+        android:name="com.androidcafe.uselectioninfo.ui.ElectionsFragment"
+        android:label="ElectionsFragment"
+        tools:layout="@layout/elections_fragment"/>
+    <fragment
+        android:id="@+id/representativesFragment"
+        android:name="com.androidcafe.uselectioninfo.ui.RepresentativesFragment"
+        android:label="RepresentativesFragment"
+        tools:layout="@layout/representatives_fragment"/>
 
 </navigation>
