@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">US Election Info</string>
+    <string name="representatives_button_text">Find My Representatives</string>
+    <string name="upcoming_elections_button_text">Upcoming Elections</string>
 </resources>
