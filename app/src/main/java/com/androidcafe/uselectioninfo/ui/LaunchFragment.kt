@@ -10,9 +10,7 @@ import com.androidcafe.uselectioninfo.databinding.LaunchFragmentBinding
 
 class LaunchFragment : Fragment() {
 
-    private val navController by lazy {
-        findNavController()
-    }
+    private val navController by lazy { findNavController() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

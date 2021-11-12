@@ -6,11 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.androidcafe.uselectioninfo.databinding.ElectionsFragmentBinding
 import com.androidcafe.uselectioninfo.viewmodel.ElectionsViewModel
 
 class ElectionsFragment: Fragment() {
 
+    private val navController by lazy { findNavController() }
     private val viewModel: ElectionsViewModel by viewModels()
 
     override fun onCreateView(inflater: LayoutInflater,
@@ -21,13 +23,17 @@ class ElectionsFragment: Fragment() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
-        //TODO: Add binding values
+        // elections recycle view
+        val adapter = ElectionListAdapter(ElectionItemClickListener {
+            //TODO: Navigate to next fragment
+        })
+
+        binding.upcomingElectionsRecyclerView.adapter = adapter
+        viewModel.mockElections.observe(viewLifecycleOwner, { elections ->
+            adapter.submitList(elections)
+        })
 
         //TODO: Link elections to voter info
-
-        //TODO: Initiate recycler adapters
-
-        //TODO: Populate recycler adapters
 
         return binding.root
 
