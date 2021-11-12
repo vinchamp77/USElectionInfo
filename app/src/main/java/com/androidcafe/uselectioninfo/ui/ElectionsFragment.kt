@@ -25,12 +25,12 @@ class ElectionsFragment: Fragment() {
 
         // elections recycle view
         val adapter = ElectionListAdapter(ElectionItemClickListener {
-            //TODO: Navigate to next fragment
+            navController.navigate(ElectionsFragmentDirections.actionElectionsFragmentToVoterInfoFragment())
         })
 
         binding.upcomingElectionsRecyclerView.adapter = adapter
-        viewModel.mockElections.observe(viewLifecycleOwner, { elections ->
-            adapter.submitList(elections)
+        viewModel.elections.observe(viewLifecycleOwner, { data ->
+            adapter.submitList(data)
         })
 
         //TODO: Link elections to voter info

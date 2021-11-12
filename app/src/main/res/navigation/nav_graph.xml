@@ -21,11 +21,22 @@
         android:id="@+id/electionsFragment"
         android:name="com.androidcafe.uselectioninfo.ui.ElectionsFragment"
         android:label="ElectionsFragment"
-        tools:layout="@layout/elections_fragment"/>
+        tools:layout="@layout/elections_fragment">
+        <action
+            android:id="@+id/action_electionsFragment_to_voterInfoFragment"
+            app:destination="@id/voterInfoFragment" />
+    </fragment>
+
     <fragment
         android:id="@+id/representativesFragment"
         android:name="com.androidcafe.uselectioninfo.ui.RepresentativesFragment"
         android:label="RepresentativesFragment"
         tools:layout="@layout/representatives_fragment"/>
+
+    <fragment
+        android:id="@+id/voterInfoFragment"
+        android:name="com.androidcafe.uselectioninfo.ui.VoterInfoFragment"
+        android:label="VoterInfoFragment"
+        tools:layout="@layout/voter_info_fragment"/>
 
 </navigation>

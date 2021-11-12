@@ -3,12 +3,15 @@ package com.androidcafe.uselectioninfo.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.androidcafe.uselectioninfo.data.Division
+import com.androidcafe.uselectioninfo.data.Election
+import java.util.*
 
 class ElectionsViewModel : ViewModel() {
     private val mockData = true
-    private val _mockElections = MutableLiveData<List<ElectionData>>()
-    val mockElections : LiveData<List<ElectionData>>
-        get() = _mockElections
+    private val _elections = MutableLiveData<List<Election>>()
+    val elections : LiveData<List<Election>>
+        get() = _elections
 
     init {
         if(mockData) {
@@ -20,21 +23,23 @@ class ElectionsViewModel : ViewModel() {
 
     private fun mockElections() {
 
-        val dataList = mutableListOf<ElectionData>()
+        val mockElections = mutableListOf<Election>()
 
         var count = 1
         while (count <= 10) {
 
-            val data = ElectionData(
-                count.toLong(),
+            val data = Election(
+                count,
                 "name:$count",
-                "XXXX-XX-XX")
+                Date(),
+                Division("id", "US", "state")
+            )
 
-            dataList.add(data)
+            mockElections.add(data)
 
             ++count
         }
 
-        _mockElections.postValue(dataList)
+        _elections.postValue(mockElections)
     }
 }

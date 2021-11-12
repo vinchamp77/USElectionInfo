@@ -3,14 +3,14 @@ package com.androidcafe.uselectioninfo.ui
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.androidcafe.uselectioninfo.data.Election
 import com.androidcafe.uselectioninfo.databinding.ElectionListItemBinding
-import com.androidcafe.uselectioninfo.viewmodel.ElectionData
 
 
 class ElectionViewHolder private constructor(private val binding: ElectionListItemBinding)
     : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(item: ElectionData, clickListener: ElectionItemClickListener) {
+    fun bind(item: Election, clickListener: ElectionItemClickListener) {
         binding.election = item
         binding.clickListener = clickListener
         binding.executePendingBindings()

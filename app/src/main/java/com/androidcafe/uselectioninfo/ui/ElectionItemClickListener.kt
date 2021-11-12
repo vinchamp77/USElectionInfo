@@ -1,7 +1,7 @@
 package com.androidcafe.uselectioninfo.ui
 
-import com.androidcafe.uselectioninfo.viewmodel.ElectionData
+import com.androidcafe.uselectioninfo.data.Election
 
-class ElectionItemClickListener(private val clickListener: (ElectionData) -> Unit) {
-    fun onClick(data: ElectionData) = clickListener(data)
+class ElectionItemClickListener(private val clickListener: (Election) -> Unit) {
+    fun onClick(data: Election) = clickListener(data)
 }
