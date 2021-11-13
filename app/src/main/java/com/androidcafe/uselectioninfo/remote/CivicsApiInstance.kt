@@ -1,9 +1,11 @@
 package com.androidcafe.uselectioninfo.remote
 
+import com.androidcafe.uselectioninfo.data.Election
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.converter.scalars.ScalarsConverterFactory
 
 object CivicsApiInstance {
 
@@ -16,6 +18,7 @@ object CivicsApiInstance {
 
     //    .addCallAdapterFactory(CoroutineCallAdapterFactory())
     private val retrofit = Retrofit.Builder()
+        .addConverterFactory(ScalarsConverterFactory.create())
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .client(CivicsHttpClient.getClient())
         .baseUrl(BASE_URL)
@@ -25,16 +28,16 @@ object CivicsApiInstance {
         retrofit.create(ICivicsApiService::class.java)
     }
 
-//    private val retrofitService : IAsteroidApiService by lazy {
-//        retrofit.create(IAsteroidApiService::class.java)
-//    }
+    suspend fun getElections(): List<Election> {
+        val electionResponse = retrofitService.getElections()
 
-//    suspend fun getAsteroids() : List<Asteroid> {
-//        val responseStr = retrofitService.getAsteroids("","", NetworkConstants.API_KEY)
-//        val responseJsonObject = JSONObject(responseStr)
-//
-//        return parseAsteroidsJsonResult(responseJsonObject)
-//    }
-//
-//    suspend fun getPictureOfDay() = retrofitService.getPictureOfDay(NetworkConstants.API_KEY)
+        return electionResponse.elections
+    }
+
+    suspend fun getElectionsJsonString(): String {
+        //breakpoint added here reached
+        val outcome = retrofitService.getElectionsJsonString()
+        //breakpoint added here never reach
+        return outcome
+    }
 }
