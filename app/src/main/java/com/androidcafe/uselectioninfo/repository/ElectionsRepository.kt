@@ -1,6 +1,5 @@
 package com.androidcafe.uselectioninfo.repository
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.androidcafe.uselectioninfo.data.Election
 import com.androidcafe.uselectioninfo.remote.CivicsApiInstance
@@ -13,10 +12,10 @@ class ElectionsRepository {
 
     suspend fun refreshElections() {
         withContext(Dispatchers.IO) {
-//            val electionList = CivicsApiInstance.getElections()
-//            elections.postValue(electionList)
-            val tmp = CivicsApiInstance.getElectionsJsonString()
-            Log.d("XXXX", tmp)
+            val electionList = CivicsApiInstance.getElections()
+            //TODO: Save to database
+            elections.postValue(electionList)
+
         }
     }
 }
