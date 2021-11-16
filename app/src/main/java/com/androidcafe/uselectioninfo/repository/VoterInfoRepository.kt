@@ -21,10 +21,12 @@ class VoterInfoRepository(
             val response = api.getVoterInfo(address, id)
             Log.d("vtsen", response.toString())
 
-            val localVoterInfo = convertToVoterInfo(id, response)
-            localVoterInfo?.run {
-                voterInfo.postValue(this)
-            }
+            // Note: if I commented out the following, breakpoint at line 22 is not hit
+            // If I remove the commented out code, the breakpoint hits
+//            val localVoterInfo = convertToVoterInfo(id, response)
+//            localVoterInfo?.run {
+//                voterInfo.postValue(this)
+//            }
         }
     }
 
