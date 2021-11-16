@@ -19,10 +19,12 @@ class VoterInfoFragment : Fragment() {
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
 
-        //TODO: Add ViewModel values and create ViewModel
         val binding = VoterInfoFragmentBinding.inflate(inflater)
         binding.lifecycleOwner = this
-        //binding.viewModel = viewModel
+        binding.viewModel = viewModel
+
+        val arguments = VoterInfoFragmentArgs.fromBundle(requireArguments())
+        viewModel.updateElection(arguments.election)
 
         //TODO: Add binding values
 

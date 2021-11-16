@@ -1,9 +1,67 @@
 package com.androidcafe.uselectioninfo.viewmodel
 
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
+import com.androidcafe.uselectioninfo.data.Election
+import com.androidcafe.uselectioninfo.data.VoterInfo
+import com.androidcafe.uselectioninfo.local.ElectionDatabase
+import com.androidcafe.uselectioninfo.remote.CivicsApiInstance
+import com.androidcafe.uselectioninfo.repository.VoterInfoRepository
+import kotlinx.coroutines.launch
 
 //class VoterInfoViewModel(private val dataSource: ElectionDao) : ViewModel() {
-class VoterInfoViewModel: ViewModel() {
+class VoterInfoViewModel(app: Application): AndroidViewModel(app) {
+
+    companion object {
+        private const val DEFAULT_STATE = "la"
+    }
+
+    private val repository = VoterInfoRepository(
+        ElectionDatabase.getInstance(app),
+        CivicsApiInstance
+    )
+
+    private val _election = MutableLiveData<Election>()
+    val election : LiveData<Election>
+        get() = _election
+
+    val voterInfo = repository.voterInfo
+
+    private val mockData = true
+    val mockVoterInfo = MutableLiveData<VoterInfo>()
+
+    init {
+        if(mockData) {
+            val data = VoterInfo(
+                2000,
+                "State XYZ",
+                "",
+                "")
+            mockVoterInfo.postValue(data)
+        }
+    }
+
+    fun updateElection(data: Election) {
+        _election.postValue(data)
+        refreshVoterInfo(data)
+    }
+
+    private fun refreshVoterInfo(data: Election) {
+        viewModelScope.launch {
+            try {
+                val state = if(data.division.state.isEmpty()) DEFAULT_STATE else data.division.state
+                val address = "${state},${data.division.country}"
+
+                repository.refreshVoterInfo(address, data.id)
+
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
 
     //TODO: Add live data to hold voter info
 

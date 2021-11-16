@@ -37,6 +37,10 @@
         android:id="@+id/voterInfoFragment"
         android:name="com.androidcafe.uselectioninfo.ui.VoterInfoFragment"
         android:label="VoterInfoFragment"
-        tools:layout="@layout/voter_info_fragment"/>
+        tools:layout="@layout/voter_info_fragment">
+        <argument
+            android:name="election"
+            app:argType="com.androidcafe.uselectioninfo.data.Election" />
+    </fragment>
 
 </navigation>

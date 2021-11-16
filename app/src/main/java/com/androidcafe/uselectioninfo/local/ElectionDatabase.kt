@@ -1,7 +1,6 @@
 package com.androidcafe.uselectioninfo.local
 
 import android.content.Context
-import androidx.lifecycle.LiveData
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -39,6 +38,7 @@ abstract class ElectionDatabase: RoomDatabase() {
         }
     }
 
-    fun insertAll(elections: List<Election>) = dao.insertAll(elections)
-    fun getAll(): LiveData<List<Election>> = dao.getAll()
+    suspend fun insertAll(elections: List<Election>) = dao.insertAll(elections)
+    fun getAll() = dao.getAll()
+    fun get(id: Int) = dao.get(id)
 }

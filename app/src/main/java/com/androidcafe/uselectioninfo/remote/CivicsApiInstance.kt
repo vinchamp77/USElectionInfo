@@ -1,6 +1,5 @@
 package com.androidcafe.uselectioninfo.remote
 
-import com.androidcafe.uselectioninfo.data.Election
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.OkHttpClient
@@ -45,8 +44,9 @@ object CivicsApiInstance {
         retrofit.create(ICivicsApiService::class.java)
     }
 
-    suspend fun getElections(): List<Election> {
-        val electionResponse = retrofitService.getElections()
-        return electionResponse.elections
-    }
+    suspend fun getElections() = retrofitService.getElections()
+    suspend fun getElectionsJsonStr() = retrofitService.getElectionsJsonStr()
+
+    suspend fun getVoterInfo(address: String, id: Int) = retrofitService.getVoterInfo(address, id)
+    suspend fun getVoterInfoJsonStr(address: String, id: Int) = retrofitService.getVoterInfoJsonStr(address, id)
 }

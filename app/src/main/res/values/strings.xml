@@ -6,4 +6,10 @@
     <!-- elections fragment -->
     <string name="saved_elections_text">Saved Elections</string>
     <string name="upcoming_elections_text">Upcoming Elections</string>
+    <!-- voter info fragment -->
+    <string name="election_info_text">Election Information: %s</string>
+    <string name="voting_location_text"><u>Click here for voting location</u></string>
+    <string name="ballot_information_text"><u>Click here for ballot information</u></string>
+
+
 </resources>

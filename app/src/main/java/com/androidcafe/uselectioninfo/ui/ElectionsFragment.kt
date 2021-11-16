@@ -25,7 +25,8 @@ class ElectionsFragment: Fragment() {
 
         // elections recycle view
         val adapter = ElectionListAdapter(ElectionItemClickListener {
-            navController.navigate(ElectionsFragmentDirections.actionElectionsFragmentToVoterInfoFragment())
+            navController.navigate(
+                ElectionsFragmentDirections.actionElectionsFragmentToVoterInfoFragment(it))
         })
 
         binding.upcomingElectionsRecyclerView.adapter = adapter

@@ -11,10 +11,15 @@ import com.androidcafe.uselectioninfo.data.Election
 interface IElectionDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(asteroids: List<Election>)
+    suspend fun insertAll(elections: List<Election>)
 
-    @Query("SELECT * FROM ${DatabaseConstants.TABLE_NAME}")
+    // Note: no suspend is required if the returned value is LiveData
+    @Query("SELECT * FROM ${DatabaseConstants.ELECTION_TABLE_NAME}")
     fun getAll(): LiveData<List<Election>>
+
+    // Note: no suspend is required if the returned value is LiveData
+    @Query("SELECT * FROM ${DatabaseConstants.ELECTION_TABLE_NAME} WHERE id = :id")
+    fun get(id: Int) : LiveData<Election>
 
     //TODO: Add select single election query
 

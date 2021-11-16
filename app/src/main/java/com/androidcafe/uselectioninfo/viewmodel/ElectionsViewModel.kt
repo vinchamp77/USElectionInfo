@@ -8,13 +8,17 @@ import androidx.lifecycle.viewModelScope
 import com.androidcafe.uselectioninfo.data.Division
 import com.androidcafe.uselectioninfo.data.Election
 import com.androidcafe.uselectioninfo.local.ElectionDatabase
+import com.androidcafe.uselectioninfo.remote.CivicsApiInstance
 import com.androidcafe.uselectioninfo.repository.ElectionsRepository
 import kotlinx.coroutines.launch
 import java.util.*
 
 class ElectionsViewModel(app: Application) : AndroidViewModel(app) {
 
-    private val repository = ElectionsRepository(ElectionDatabase.getInstance(app))
+    private val repository = ElectionsRepository(
+        ElectionDatabase.getInstance(app),
+        CivicsApiInstance)
+
     val elections = repository.elections
 
     private val mockData = false
