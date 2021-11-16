@@ -10,6 +10,12 @@
     <string name="election_info_text">Election Information: %s</string>
     <string name="voting_location_text"><u>Click here for voting location</u></string>
     <string name="ballot_information_text"><u>Click here for ballot information</u></string>
+    <string name="follow_election_text">Follow Election</string>
+    <string name="unfollow_election_text">Follow Election</string>
+
+    <!-- snack bar messages -->
+    <string name="no_web_browser_found_msg">"Please install Web Browser!"</string>
+
 
 
 </resources>

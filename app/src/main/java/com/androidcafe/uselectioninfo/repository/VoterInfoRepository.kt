@@ -1,32 +1,32 @@
 package com.androidcafe.uselectioninfo.repository
 
-import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.androidcafe.uselectioninfo.data.VoterInfo
 import com.androidcafe.uselectioninfo.data.VoterInfoResponse
 import com.androidcafe.uselectioninfo.local.ElectionDatabase
+import com.androidcafe.uselectioninfo.local.VoterInfoDatabase
 import com.androidcafe.uselectioninfo.remote.CivicsApiInstance
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class VoterInfoRepository(
-    private val database: ElectionDatabase,
+    private val voterInfoDatabase: VoterInfoDatabase,
+    private val electionDatabase: ElectionDatabase,
     private val api: CivicsApiInstance) {
 
-    val voterInfo = MutableLiveData<VoterInfo>()
+    private val _voterInfo = MutableLiveData<VoterInfo>()
+    val voterInfo: LiveData<VoterInfo>
+        get() = _voterInfo
 
     suspend fun refreshVoterInfo(address:String, id:Int) {
         withContext(Dispatchers.IO) {
-            Log.d("vtsen", "test")
-            val response = api.getVoterInfo(address, id)
-            Log.d("vtsen", response.toString())
 
-            // Note: if I commented out the following, breakpoint at line 22 is not hit
-            // If I remove the commented out code, the breakpoint hits
-//            val localVoterInfo = convertToVoterInfo(id, response)
-//            localVoterInfo?.run {
-//                voterInfo.postValue(this)
-//            }
+            val response = api.getVoterInfo(address, id)
+            val data = convertToVoterInfo(id, response)
+            data?.run {
+                voterInfoDatabase.insert(this)
+            }
         }
     }
 
@@ -55,5 +55,12 @@ class VoterInfoRepository(
         }
 
         return voterInfo
+    }
+
+    suspend fun loadVoterInfo(id:Int) {
+        withContext(Dispatchers.IO) {
+            val data = voterInfoDatabase.get(id)
+            _voterInfo.postValue(data)
+        }
     }
 }

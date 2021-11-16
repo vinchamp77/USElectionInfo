@@ -40,6 +40,7 @@ class ElectionsViewModel(app: Application) : AndroidViewModel(app) {
                 repository.refreshElections()
 
             } catch (e: Exception) {
+                //TODO: Snackbar
                 e.printStackTrace()
             }
         }

@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.androidcafe.uselectioninfo.data.Election
 import com.androidcafe.uselectioninfo.data.VoterInfo
 import com.androidcafe.uselectioninfo.local.ElectionDatabase
+import com.androidcafe.uselectioninfo.local.VoterInfoDatabase
 import com.androidcafe.uselectioninfo.remote.CivicsApiInstance
 import com.androidcafe.uselectioninfo.repository.VoterInfoRepository
 import kotlinx.coroutines.launch
@@ -20,6 +21,7 @@ class VoterInfoViewModel(app: Application): AndroidViewModel(app) {
     }
 
     private val repository = VoterInfoRepository(
+        VoterInfoDatabase.getInstance(app),
         ElectionDatabase.getInstance(app),
         CivicsApiInstance
     )
@@ -29,6 +31,10 @@ class VoterInfoViewModel(app: Application): AndroidViewModel(app) {
         get() = _election
 
     val voterInfo = repository.voterInfo
+
+    private val _isSaved = MutableLiveData<Boolean>()
+    val isSaved : LiveData<Boolean>
+        get() = _isSaved
 
     private val mockData = true
     val mockVoterInfo = MutableLiveData<VoterInfo>()
@@ -42,10 +48,12 @@ class VoterInfoViewModel(app: Application): AndroidViewModel(app) {
                 "")
             mockVoterInfo.postValue(data)
         }
+
+        _isSaved.value = false
     }
 
-    fun updateElection(data: Election) {
-        _election.postValue(data)
+    fun refresh(data: Election) {
+        _election.value = data
         refreshVoterInfo(data)
     }
 
@@ -56,11 +64,25 @@ class VoterInfoViewModel(app: Application): AndroidViewModel(app) {
                 val address = "${state},${data.division.country}"
 
                 repository.refreshVoterInfo(address, data.id)
+                loadVoterInfo(data.id)
 
             } catch (e: Exception) {
                 e.printStackTrace()
+                loadVoterInfo(data.id)
             }
         }
+    }
+
+    private suspend fun loadVoterInfo(id: Int) {
+        try {
+            repository.loadVoterInfo(id)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    fun onFollowButtonClick() {
+
     }
 
     //TODO: Add live data to hold voter info

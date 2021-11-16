@@ -73,7 +73,7 @@
             app:layout_constraintStart_toStartOf="@id/election_date"
             app:layout_constraintTop_toBottomOf="@id/state_locations" />
 
-            <!--  future implementation -->
+        <!--  future implementation -->
 <!--        <androidx.constraintlayout.widget.Group-->
 <!--            android:id="@+id/address_group"-->
 <!--            android:layout_width="wrap_content"-->
@@ -96,7 +96,20 @@
 <!--            app:layout_constraintTop_toBottomOf="@id/state_correspondence_header"-->
 <!--            app:layout_constraintStart_toStartOf="@id/election_date" />-->
 
-        <!-- TODO: Add button to save election to Room -->
+        <Button
+            android:id="@+id/follow_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginEnd="@dimen/default_margin"
+            android:layout_marginBottom="@dimen/default_margin"
+
+            android:onClick="@{() -> viewModel.onFollowButtonClick()}"
+            app:followButtonText="@{viewModel.isSaved}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="@string/follow_election_text"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
