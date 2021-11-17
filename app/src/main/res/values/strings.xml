@@ -22,5 +22,6 @@
     <string name="use_my_location_text">Use My Location</string>
     <string name="my_representatives_text">My Representatives</string>
     <!-- snack bar messages -->
+    <string name="fail_no_network_msg">"Failed connecting to network!"</string>
     <string name="no_web_browser_found_msg">"Please install Web Browser!"</string>
 </resources>

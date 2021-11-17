@@ -1,10 +1,10 @@
 package com.androidcafe.uselectioninfo.viewmodel
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.androidcafe.uselectioninfo.R
 import com.androidcafe.uselectioninfo.data.Division
 import com.androidcafe.uselectioninfo.data.Election
 import com.androidcafe.uselectioninfo.local.ActiveElectionDatabase
@@ -14,7 +14,7 @@ import com.androidcafe.uselectioninfo.repository.ElectionsRepository
 import kotlinx.coroutines.launch
 import java.util.*
 
-class ElectionsViewModel(app: Application) : AndroidViewModel(app) {
+class ElectionsViewModel(app: Application) : BaseViewModel(app) {
 
     private val repository = ElectionsRepository(
         ActiveElectionDatabase.getInstance(app),
@@ -43,8 +43,8 @@ class ElectionsViewModel(app: Application) : AndroidViewModel(app) {
                 repository.refreshElections()
 
             } catch (e: Exception) {
-                //TODO: Snackbar
                 e.printStackTrace()
+                showSnackBarInt.postValue(R.string.fail_no_network_msg)
             }
         }
     }

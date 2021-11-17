@@ -78,7 +78,7 @@ class VoterInfoRepository(
     suspend fun loadVoterInfo(id:Int) {
         withContext(Dispatchers.IO) {
             val data = voterInfoDatabase.get(id)
-            _voterInfo.postValue(data)
+            data?.run {_voterInfo.postValue(this)}
         }
     }
 }

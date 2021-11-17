@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.androidcafe.uselectioninfo.R
@@ -15,10 +14,10 @@ import com.androidcafe.uselectioninfo.databinding.VoterInfoFragmentBinding
 import com.androidcafe.uselectioninfo.viewmodel.VoterInfoViewModel
 import com.google.android.material.snackbar.Snackbar
 
-class VoterInfoFragment : Fragment() {
+class VoterInfoFragment : BaseFragment() {
 
     private val navController by lazy { findNavController() }
-    private val viewModel: VoterInfoViewModel by viewModels()
+    override val viewModel: VoterInfoViewModel by viewModels()
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
@@ -45,8 +44,6 @@ class VoterInfoFragment : Fragment() {
             }
         }
 
-        //TODO: Handle save button UI state
-        //TODO: cont'd Handle save button clicks
         return binding.root
     }
 

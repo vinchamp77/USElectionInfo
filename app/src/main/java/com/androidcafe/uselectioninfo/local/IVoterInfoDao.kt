@@ -13,5 +13,5 @@ interface IVoterInfoDao {
     suspend fun insert(voterInfo: VoterInfo)
 
     @Query("SELECT * FROM ${DatabaseConstants.VOTER_INFO_TABLE_NAME} WHERE id = :id")
-    suspend fun get(id: Int) : VoterInfo
+    suspend fun get(id: Int) : VoterInfo?
 }

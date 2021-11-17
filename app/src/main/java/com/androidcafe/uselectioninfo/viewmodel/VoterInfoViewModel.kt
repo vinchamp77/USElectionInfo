@@ -1,10 +1,10 @@
 package com.androidcafe.uselectioninfo.viewmodel
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.androidcafe.uselectioninfo.R
 import com.androidcafe.uselectioninfo.data.Election
 import com.androidcafe.uselectioninfo.data.VoterInfo
 import com.androidcafe.uselectioninfo.local.SavedElectionDatabase
@@ -13,7 +13,7 @@ import com.androidcafe.uselectioninfo.remote.CivicsApiInstance
 import com.androidcafe.uselectioninfo.repository.VoterInfoRepository
 import kotlinx.coroutines.launch
 
-class VoterInfoViewModel(app: Application): AndroidViewModel(app) {
+class VoterInfoViewModel(app: Application): BaseViewModel(app) {
 
     companion object {
         private const val DEFAULT_STATE = "la"
@@ -65,7 +65,6 @@ class VoterInfoViewModel(app: Application): AndroidViewModel(app) {
 
             } catch (e: Exception) {
                 e.printStackTrace()
-
             }
         }
     }
@@ -77,20 +76,13 @@ class VoterInfoViewModel(app: Application): AndroidViewModel(app) {
                 val address = "${state},${data.division.country}"
 
                 repository.refreshVoterInfo(address, data.id)
-                loadVoterInfo(data.id)
+                repository.loadVoterInfo(data.id)
 
             } catch (e: Exception) {
                 e.printStackTrace()
-                loadVoterInfo(data.id)
+                showSnackBarInt.postValue(R.string.fail_no_network_msg)
+                repository.loadVoterInfo(data.id)
             }
-        }
-    }
-
-    private suspend fun loadVoterInfo(id: Int) {
-        try {
-            repository.loadVoterInfo(id)
-        } catch (e: Exception) {
-            e.printStackTrace()
         }
     }
 
