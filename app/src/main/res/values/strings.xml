@@ -12,10 +12,15 @@
     <string name="ballot_information_text"><u>Click here for ballot information</u></string>
     <string name="follow_election_text">Follow Election</string>
     <string name="unfollow_election_text">Unfollow Election</string>
-
+    <!-- representative fragment -->
+    <string name="representative_search_text">Representative Search</string>
+    <string name="address_line_1_text">Address Line 1</string>
+    <string name="address_line_2_text">Address Line 2</string>
+    <string name="city_text">City</string>
+    <string name="zip_text">Zip</string>
+    <string name="find_my_representatives_text">Find My Representatives</string>
+    <string name="use_my_location_text">Use My Location</string>
+    <string name="my_representatives_text">My Representatives</string>
     <!-- snack bar messages -->
     <string name="no_web_browser_found_msg">"Please install Web Browser!"</string>
-
-
-
 </resources>
