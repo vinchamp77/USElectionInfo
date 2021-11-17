@@ -23,23 +23,30 @@ class ElectionsFragment: Fragment() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
-        // elections recycle view
-        val adapter = ElectionListAdapter(ElectionItemClickListener {
+        // active elections recycle view
+        val activeElectionAdapter = ElectionListAdapter(ElectionItemClickListener { election ->
             navController.navigate(
-                ElectionsFragmentDirections.actionElectionsFragmentToVoterInfoFragment(it))
+                ElectionsFragmentDirections.actionElectionsFragmentToVoterInfoFragment(election)
+            )
         })
 
-        binding.upcomingElectionsRecyclerView.adapter = adapter
-        viewModel.elections.observe(viewLifecycleOwner, { data ->
-            adapter.submitList(data)
+        binding.upcomingElectionsRecyclerView.adapter = activeElectionAdapter
+        viewModel.activeElections.observe(viewLifecycleOwner, { elections ->
+            activeElectionAdapter.submitList(elections)
         })
 
-        //TODO: Link elections to voter info
+
+        // saved elections recycle view
+        val savedElectionAdapter = ElectionListAdapter(ElectionItemClickListener { election ->
+            navController.navigate(
+                ElectionsFragmentDirections.actionElectionsFragmentToVoterInfoFragment(election))
+        })
+
+        binding.savedElectionsRecyclerView.adapter = savedElectionAdapter
+        viewModel.savedElections.observe(viewLifecycleOwner, { elections ->
+            savedElectionAdapter.submitList(elections)
+        })
 
         return binding.root
-
     }
-
-    //TODO: Refresh adapters when fragment loads
-
 }

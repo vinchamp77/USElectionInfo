@@ -21,7 +21,8 @@ class ElectionsViewModel(app: Application) : AndroidViewModel(app) {
         SavedElectionDatabase.getInstance(app),
         CivicsApiInstance)
 
-    val elections = repository.activeElections
+    val activeElections = repository.activeElections
+    val savedElections = repository.savedElections
 
     private val mockData = false
     private val _mockElections = MutableLiveData<List<Election>>()

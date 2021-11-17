@@ -8,7 +8,7 @@ import kotlinx.coroutines.withContext
 
 class ElectionsRepository(
     private val activeElectionDatabase: ActiveElectionDatabase,
-    private val savedElectionDatabase: SavedElectionDatabase,
+    savedElectionDatabase: SavedElectionDatabase,
     private val api: CivicsApiInstance) {
 
     val activeElections = activeElectionDatabase.getAll()
