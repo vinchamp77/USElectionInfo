@@ -9,23 +9,23 @@ import com.androidcafe.uselectioninfo.data.Election
 
 @Database(entities = [Election::class], version = 1, exportSchema = false)
 @TypeConverters(DateConverters::class)
-abstract class ElectionDatabase: RoomDatabase() {
+abstract class SavedElectionDatabase: RoomDatabase() {
 
     abstract val dao: IElectionDao
 
     companion object {
 
         @Volatile
-        private var INSTANCE: ElectionDatabase? = null
+        private var INSTANCE: SavedElectionDatabase? = null
 
-        fun getInstance(context: Context): ElectionDatabase {
+        fun getInstance(context: Context): SavedElectionDatabase {
             synchronized(this) {
                 var instance = INSTANCE
                 if (instance == null) {
                     instance = Room.databaseBuilder(
                         context.applicationContext,
-                        ElectionDatabase::class.java,
-                        "election_database"
+                        SavedElectionDatabase::class.java,
+                        "saved_election_database"
                     )
                         .fallbackToDestructiveMigration()
                         .build()
@@ -38,7 +38,8 @@ abstract class ElectionDatabase: RoomDatabase() {
         }
     }
 
-    suspend fun insertAll(elections: List<Election>) = dao.insertAll(elections)
     fun getAll() = dao.getAll()
-    fun get(id: Int) = dao.get(id)
+    suspend fun get(id: Int) = dao.get(id)
+    suspend fun insert(election: Election) = dao.insert(election)
+    suspend fun delete(election: Election) = dao.delete(election)
 }

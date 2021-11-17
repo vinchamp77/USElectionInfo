@@ -14,12 +14,14 @@ fun bindElectionInfoTitleText(view: TextView, voterInfo: VoterInfo?) {
 }
 
 @BindingAdapter("followButtonText")
-fun bindFollowButtonText(button: Button, isSaved: Boolean?) {
-    isSaved?.run {
-        if (isSaved) {
+fun bindFollowButtonText(button: Button, isElectionSaved: Boolean?) {
+    if(isElectionSaved != null) {
+        if (isElectionSaved) {
             button.text = button.resources.getString(R.string.unfollow_election_text)
         } else {
             button.text = button.resources.getString(R.string.follow_election_text)
         }
+    } else {
+        button.text = ""
     }
 }

@@ -21,7 +21,7 @@
             android:padding="@dimen/default_padding"
             android:singleLine="true"
             app:layout_constraintTop_toTopOf="parent"
-            app:title="@{viewModel.election.name}"
+            app:title="@{viewModel.selectedElection.name}"
             tools:title="App Bar Title" />
 
         <TextView
@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/default_margin"
             android:layout_marginTop="@dimen/default_margin"
-            android:text="@{viewModel.election.electionDay.toString()}"
+            android:text="@{viewModel.selectedElection.electionDay.toString()}"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/election_name"
@@ -103,9 +103,8 @@
             android:layout_marginStart="@dimen/default_margin"
             android:layout_marginEnd="@dimen/default_margin"
             android:layout_marginBottom="@dimen/default_margin"
-
             android:onClick="@{() -> viewModel.onFollowButtonClick()}"
-            app:followButtonText="@{viewModel.isSaved}"
+            app:followButtonText="@{viewModel.isElectionSaved}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -1,10 +1,7 @@
 package com.androidcafe.uselectioninfo.local
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.androidcafe.uselectioninfo.data.Election
 
 @Dao
@@ -17,14 +14,15 @@ interface IElectionDao {
     @Query("SELECT * FROM ${DatabaseConstants.ELECTION_TABLE_NAME}")
     fun getAll(): LiveData<List<Election>>
 
-    // Note: no suspend is required if the returned value is LiveData
     @Query("SELECT * FROM ${DatabaseConstants.ELECTION_TABLE_NAME} WHERE id = :id")
-    fun get(id: Int) : LiveData<Election>
+    suspend fun get(id: Int) : Election?
 
-    //TODO: Add select single election query
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insert(election: Election)
 
-    //TODO: Add delete query
+    @Delete
+    suspend fun delete(election: Election)
 
-    //TODO: Add clear query
-
+    @Query("DELETE FROM ${DatabaseConstants.ELECTION_TABLE_NAME}")
+    suspend fun clear()
 }

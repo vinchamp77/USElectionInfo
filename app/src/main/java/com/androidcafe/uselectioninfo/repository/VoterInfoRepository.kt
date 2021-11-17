@@ -2,9 +2,10 @@ package com.androidcafe.uselectioninfo.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.androidcafe.uselectioninfo.data.Election
 import com.androidcafe.uselectioninfo.data.VoterInfo
 import com.androidcafe.uselectioninfo.data.VoterInfoResponse
-import com.androidcafe.uselectioninfo.local.ElectionDatabase
+import com.androidcafe.uselectioninfo.local.SavedElectionDatabase
 import com.androidcafe.uselectioninfo.local.VoterInfoDatabase
 import com.androidcafe.uselectioninfo.remote.CivicsApiInstance
 import kotlinx.coroutines.Dispatchers
@@ -12,12 +13,29 @@ import kotlinx.coroutines.withContext
 
 class VoterInfoRepository(
     private val voterInfoDatabase: VoterInfoDatabase,
-    private val electionDatabase: ElectionDatabase,
+    private val savedElectionDatabase: SavedElectionDatabase,
     private val api: CivicsApiInstance) {
 
     private val _voterInfo = MutableLiveData<VoterInfo>()
     val voterInfo: LiveData<VoterInfo>
         get() = _voterInfo
+
+    suspend fun getSavedElection(id: Int) : Election?{
+        val election = withContext(Dispatchers.IO) {
+            return@withContext savedElectionDatabase.get(id)
+        }
+        return election
+    }
+    suspend fun insertSavedElection(election: Election) {
+        withContext(Dispatchers.IO) {
+            savedElectionDatabase.insert(election)
+        }
+    }
+    suspend fun deleteSavedElection(election: Election) {
+        withContext(Dispatchers.IO) {
+            savedElectionDatabase.delete(election)
+        }
+    }
 
     suspend fun refreshVoterInfo(address:String, id:Int) {
         withContext(Dispatchers.IO) {

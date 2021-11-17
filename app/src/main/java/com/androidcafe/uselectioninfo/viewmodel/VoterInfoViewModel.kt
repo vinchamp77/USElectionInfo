@@ -7,13 +7,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.androidcafe.uselectioninfo.data.Election
 import com.androidcafe.uselectioninfo.data.VoterInfo
-import com.androidcafe.uselectioninfo.local.ElectionDatabase
+import com.androidcafe.uselectioninfo.local.SavedElectionDatabase
 import com.androidcafe.uselectioninfo.local.VoterInfoDatabase
 import com.androidcafe.uselectioninfo.remote.CivicsApiInstance
 import com.androidcafe.uselectioninfo.repository.VoterInfoRepository
 import kotlinx.coroutines.launch
 
-//class VoterInfoViewModel(private val dataSource: ElectionDao) : ViewModel() {
 class VoterInfoViewModel(app: Application): AndroidViewModel(app) {
 
     companion object {
@@ -22,19 +21,19 @@ class VoterInfoViewModel(app: Application): AndroidViewModel(app) {
 
     private val repository = VoterInfoRepository(
         VoterInfoDatabase.getInstance(app),
-        ElectionDatabase.getInstance(app),
+        SavedElectionDatabase.getInstance(app),
         CivicsApiInstance
     )
 
-    private val _election = MutableLiveData<Election>()
-    val election : LiveData<Election>
-        get() = _election
+    private val _selectedElection = MutableLiveData<Election>()
+    val selectedElection : LiveData<Election>
+        get() = _selectedElection
 
     val voterInfo = repository.voterInfo
 
-    private val _isSaved = MutableLiveData<Boolean>()
-    val isSaved : LiveData<Boolean>
-        get() = _isSaved
+    private val _isElectionSaved = MutableLiveData<Boolean?>()
+    val isElectionSaved : LiveData<Boolean?>
+        get() = _isElectionSaved
 
     private val mockData = true
     val mockVoterInfo = MutableLiveData<VoterInfo>()
@@ -49,12 +48,26 @@ class VoterInfoViewModel(app: Application): AndroidViewModel(app) {
             mockVoterInfo.postValue(data)
         }
 
-        _isSaved.value = false
+        _isElectionSaved.value = null
     }
 
     fun refresh(data: Election) {
-        _election.value = data
+        _selectedElection.value = data
+        refreshIsElectionSaved(data)
         refreshVoterInfo(data)
+    }
+
+    private fun refreshIsElectionSaved(data: Election) {
+        viewModelScope.launch {
+            try {
+                val savedElection = repository.getSavedElection(data.id)
+                _isElectionSaved.postValue(savedElection != null)
+
+            } catch (e: Exception) {
+                e.printStackTrace()
+
+            }
+        }
     }
 
     private fun refreshVoterInfo(data: Election) {
@@ -82,20 +95,15 @@ class VoterInfoViewModel(app: Application): AndroidViewModel(app) {
     }
 
     fun onFollowButtonClick() {
-
+        viewModelScope.launch {
+            _selectedElection.value?.let {
+                if(isElectionSaved.value == true) {
+                    repository.deleteSavedElection(it)
+                } else {
+                    repository.insertSavedElection(it)
+                }
+                refreshIsElectionSaved(it)
+            }
+        }
     }
-
-    //TODO: Add live data to hold voter info
-
-    //TODO: Add var and methods to populate voter info
-
-    //TODO: Add var and methods to support loading URLs
-
-    //TODO: Add var and methods to save and remove elections to local database
-    //TODO: cont'd -- Populate initial state of save button to reflect proper action based on election saved status
-
-    /**
-     * Hint: The saved state can be accomplished in multiple ways. It is directly related to how elections are saved/removed from the database.
-     */
-
 }
