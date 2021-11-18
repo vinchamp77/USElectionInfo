@@ -2,7 +2,7 @@
 
 This is based on the starter code from [here](https://github.com/udacity/nd940-cap-advanced-android-programming-project-starter/tree/master/starter).
 
-## Requirements to Run
+## Requirements
 
 You need add your **API_KEY** in [CivicsApiInstance.kt](https://github.com/vinchamp77/Android_NanoDegree_USElectionInfo/blob/master/app/src/main/java/com/androidcafe/uselectioninfo/remote/CivicsApiInstance.kt) in order to run the code sucessfully.
 
