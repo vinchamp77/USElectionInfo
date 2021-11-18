@@ -49,4 +49,7 @@ object CivicsApiInstance {
 
     suspend fun getVoterInfo(address: String, id: Int) = retrofitService.getVoterInfo(address, id)
     suspend fun getVoterInfoJsonStr(address: String, id: Int) = retrofitService.getVoterInfoJsonStr(address, id)
+
+    suspend fun getRepresentatives(address: String) = retrofitService.getRepresentatives(address)
+    suspend fun getRepresentativesJsonStr(address: String) = retrofitService.getRepresentativesJsonStr(address)
 }

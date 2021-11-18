@@ -3,6 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="viewModel"
+            type="com.androidcafe.uselectioninfo.viewmodel.RepresentativesViewModel" />
+    </data>
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_height="match_parent"
         android:layout_width="match_parent">
@@ -26,6 +33,7 @@
             android:inputType="textPostalAddress"
             android:hint="@string/address_line_1_text"
             android:autofillHints="@string/address_line_1_text"
+            android:text="@={viewModel.address.line1}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/search_title" />
 
@@ -53,17 +61,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/address_line_2" />
 
-
         <Spinner
             android:id="@+id/state"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:entries="@array/states"
             android:inputType="textPostalAddress"
-            app:layout_constraintBottom_toBottomOf="@+id/city"
+            android:entries="@{viewModel.states}"
+            android:selectedItemPosition="@={viewModel.selectedStateIndex}"
+            app:layout_constraintBottom_toBottomOf="@id/city"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/city"
-            app:layout_constraintTop_toTopOf="@+id/city" />
+            app:layout_constraintStart_toEndOf="@id/city"
+            app:layout_constraintTop_toTopOf="@id/city" />
 
         <EditText
             android:id="@+id/zip"
@@ -84,6 +92,7 @@
             android:layout_marginStart="@dimen/small_margin"
             android:layout_marginEnd="@dimen/small_margin"
             android:text="@string/find_my_representatives_text"
+            android:onClick="@{()->viewModel.onSearchButtonClick()}"
             app:layout_constraintTop_toBottomOf="@id/zip" />
 
         <Button
@@ -106,7 +115,7 @@
             app:layout_constraintTop_toBottomOf="@id/location_button" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/saved_elections_recycler_view"
+            android:id="@+id/representatives_recycler_view"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginBottom="@dimen/small_margin"

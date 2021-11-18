@@ -4,31 +4,37 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.androidcafe.uselectioninfo.databinding.RepresentativesFragmentBinding
+import com.androidcafe.uselectioninfo.viewmodel.RepresentativesViewModel
 
-class RepresentativesFragment : Fragment() {
+class RepresentativesFragment : BaseFragment() {
+
+    private val navController by lazy { findNavController() }
+    override val viewModel: RepresentativesViewModel by viewModels()
 
     companion object {
         //TODO: Add Constant for Location request
     }
-
-    //TODO: Declare ViewModel
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
         val binding = RepresentativesFragmentBinding.inflate(inflater)
         binding.lifecycleOwner = this
+        binding.viewModel = viewModel
+
+        // recycle view
+        val adapter = RepresentativeListAdapter()
+        binding.representativesRecyclerView.adapter = adapter
+        viewModel.representatives.observe(viewLifecycleOwner, { representatives ->
+            adapter.submitList(representatives)
+        })
 
         return binding.root
 
 
-        //TODO: Establish bindings
-
-        //TODO: Define and assign Representative adapter
-
-        //TODO: Populate Representative adapter
 
         //TODO: Establish button listeners for field and location search
 

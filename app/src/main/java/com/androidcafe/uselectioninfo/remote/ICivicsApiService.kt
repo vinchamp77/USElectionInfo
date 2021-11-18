@@ -32,9 +32,15 @@ interface ICivicsApiService {
         @Query("electionId") electionId: Int
     ): String
 
+    // Documentation: https://developers.google.com/civic-information/docs/v2/representatives/representativeInfoByAddress
+    // Example: https://www.googleapis.com/civicinfo/v2/representatives?key=<API KEY>&address=la
     @GET("representatives")
     suspend fun getRepresentatives(
         @Query("address") address: String
     ): RepresentativeResponse
 
+    @GET("representatives")
+    suspend fun getRepresentativesJsonStr(
+        @Query("address") address: String
+    ): String
 }

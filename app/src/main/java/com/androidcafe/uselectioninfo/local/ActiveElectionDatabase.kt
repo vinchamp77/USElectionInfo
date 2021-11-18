@@ -11,7 +11,7 @@ import com.androidcafe.uselectioninfo.data.Election
 @TypeConverters(DateConverters::class)
 abstract class ActiveElectionDatabase: RoomDatabase() {
 
-    abstract val dao: IElectionDao
+    protected abstract val dao: IElectionDao
 
     companion object {
 

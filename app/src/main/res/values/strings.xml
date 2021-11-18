@@ -24,4 +24,5 @@
     <!-- snack bar messages -->
     <string name="fail_no_network_msg">"Failed connecting to network!"</string>
     <string name="no_web_browser_found_msg">"Please install Web Browser!"</string>
+    <string name="no_network_or_address_not_found_msg">"No network or address not found!"</string>
 </resources>
