@@ -25,4 +25,7 @@
     <string name="fail_no_network_msg">"Failed connecting to network!"</string>
     <string name="no_web_browser_found_msg">"Please install Web Browser!"</string>
     <string name="no_network_or_address_not_found_msg">"No network or address not found!"</string>
+    <string name="no_location_permission_msg">"Location permission is required!"</string>
+    <string name="current_location_is_not_us_msg">"Current location is not in US!"</string>
+    <string name="location_required_error_msg">Location service must be enabled!</string>
 </resources>

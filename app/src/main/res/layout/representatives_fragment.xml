@@ -46,6 +46,7 @@
             android:inputType="textPostalAddress"
             android:hint="@string/address_line_2_text"
             android:autofillHints="@string/address_line_2_text"
+            android:text="@={viewModel.address.line2}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/address_line_1" />
 
@@ -58,6 +59,7 @@
             android:hint="@string/city_text"
             android:inputType="textPostalAddress"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:text="@={viewModel.address.city}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/address_line_2" />
 
@@ -82,6 +84,7 @@
             android:hint="@string/zip_text"
             android:inputType="textPostalAddress"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:text="@={viewModel.address.zip}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/city" />
 
@@ -92,7 +95,6 @@
             android:layout_marginStart="@dimen/small_margin"
             android:layout_marginEnd="@dimen/small_margin"
             android:text="@string/find_my_representatives_text"
-            android:onClick="@{()->viewModel.onSearchButtonClick()}"
             app:layout_constraintTop_toBottomOf="@id/zip" />
 
         <Button
