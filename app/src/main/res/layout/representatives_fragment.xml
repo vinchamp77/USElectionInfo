@@ -9,10 +9,10 @@
             type="com.androidcafe.uselectioninfo.viewmodel.RepresentativesViewModel" />
     </data>
 
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.constraintlayout.motion.widget.MotionLayout
         android:layout_height="match_parent"
-        android:layout_width="match_parent">
+        android:layout_width="match_parent"
+        app:layoutDescription="@xml/representatives_fragment_scene">
 
         <TextView
             android:id="@+id/search_title"
@@ -132,5 +132,5 @@
 
         </androidx.recyclerview.widget.RecyclerView>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.motion.widget.MotionLayout>
 </layout>
