@@ -1,6 +1,6 @@
-# Android_NanoDegree_USElectionInfo
+# US Election Info App
 
-This is based on the starter code from [here](https://github.com/udacity/nd940-cap-advanced-android-programming-project-starter/tree/master/starter).
+This app is based on the starter code from [here](https://github.com/udacity/nd940-cap-advanced-android-programming-project-starter/tree/master/starter).
 
 ## Requirements
 
