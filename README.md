@@ -6,7 +6,6 @@ This app is based on the starter code from [here](https://github.com/udacity/nd9
 
 This project is part of the [Andrlid Kotlin Developer Nanodegree](https://vtsen.hashnode.dev/is-it-worth-to-pay-for-android-kotlin-developer-nanodegree) from Udacity. For details, please refer to the following:
 - [Final Capstone Project: Design and Build an Android Application](https://vtsen.hashnode.dev/android-kotlin-developer-nanodegree-projects-review#heading-final-capstone-project-design-and-build-an-android-application)
-- [My Android project page](https://vtsen.hashnode.dev/projects)
 
 ## Requirements
 
