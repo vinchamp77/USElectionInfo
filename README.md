@@ -21,3 +21,14 @@ You need add your **API_KEY** in [CivicsApiInstance.kt](https://github.com/vinch
 **2. You need to enable the Google Civic Information API service**
 
 [https://console.cloud.google.com/apis/library/civicinfo.googleapis.com](https://console.cloud.google.com/apis/library/civicinfo.googleapis.com)
+
+## Tech Stack
+- MVVM Architecture
+- Motion Layout
+- Retrofit
+- Glide
+- Room Database
+- Location
+
+## See Also
+For other projects, refer to my [Android projects page](https://vtsen.hashnode.dev/projects).
