@@ -8,8 +8,8 @@ This project is part of the [Andrlid Kotlin Developer Nanodegree](https://vtsen.
 - [Final Capstone Project: Design and Build an Android Application](https://vtsen.hashnode.dev/android-kotlin-developer-nanodegree-projects-review#heading-final-capstone-project-design-and-build-an-android-application)
 
 ## Requirements
-
-You need add your **API_KEY** in [CivicsApiInstance.kt](https://github.com/vinchamp77/Android_NanoDegree_USElectionInfo/blob/master/app/src/main/java/com/androidcafe/uselectioninfo/remote/CivicsApiInstance.kt) in order to run the code sucessfully.
+- Android Studio Bumblebee
+- You need add your **API_KEY** in [CivicsApiInstance.kt](https://github.com/vinchamp77/Android_NanoDegree_USElectionInfo/blob/master/app/src/main/java/com/androidcafe/uselectioninfo/remote/CivicsApiInstance.kt) in order to run the code sucessfully.
 
 ## How to Get the API Key?
 
