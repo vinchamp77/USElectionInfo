@@ -22,7 +22,7 @@ This project is part of the [Andrlid Kotlin Developer Nanodegree](https://vtsen.
 [https://console.cloud.google.com/apis/library/civicinfo.googleapis.com](https://console.cloud.google.com/apis/library/civicinfo.googleapis.com)
 
 ## Tech Stack
-- MVVM Architecture
+- [MVVM Architecture](https://vtsen.hashnode.dev/mvc-vs-mvp-vs-mvvm-design-patterns)
 - Motion Layout
 - Retrofit
 - Glide
