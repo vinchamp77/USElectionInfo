@@ -169,7 +169,11 @@ class RepresentativesFragment : BaseFragment() {
         locationRequest.interval = 0
         locationRequest.fastestInterval = 0
         locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-        fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper())
+        Looper.myLooper()?.let {
+            fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback,
+                it
+            )
+        }
 
         /* Last location is not very accurate - keeping it here for future reference */
 //        val fusedLocationProviderClient =
