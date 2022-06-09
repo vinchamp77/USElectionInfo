@@ -29,6 +29,3 @@ This project is part of the [Andrlid Kotlin Developer Nanodegree](https://vtsen.
 - Room Database
 - Location
 - Coroutine & Live Data
-
-## See Also
-For other projects, refer to my [Android projects page](https://vtsen.hashnode.dev/projects).
