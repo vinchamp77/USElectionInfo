@@ -24,7 +24,7 @@ This project is part of the [Andrlid Kotlin Developer Nanodegree](https://vtsen.
 ## Tech Stack
 - [MVVM Architecture](https://vtsen.hashnode.dev/mvc-vs-mvp-vs-mvvm-design-patterns)
 - Motion Layout
-- Retrofit
+- [Retrofit](https://vtsen.hashnode.dev/simple-rest-api-android-app-in-kotlin-various-http-client-library-implementations)
 - Glide
 - Room Database
 - Location
