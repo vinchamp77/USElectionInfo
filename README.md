@@ -22,6 +22,7 @@ This project is part of the [Andrlid Kotlin Developer Nanodegree](https://vtsen.
 [https://console.cloud.google.com/apis/library/civicinfo.googleapis.com](https://console.cloud.google.com/apis/library/civicinfo.googleapis.com)
 
 ## Tech Stack
+- Android View
 - MVVM Architecture
 - Motion Layout
 - Retrofit
