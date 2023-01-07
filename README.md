@@ -1,6 +1,6 @@
 # US Election Info App
 
-![](app/src/main/completed_android_kotlin_developer_nanodegree_projects_05.gif)
+![](screenshots/completed_android_kotlin_developer_nanodegree_projects_05.gif)
 
 This app is based on the starter code from [here](https://github.com/udacity/nd940-cap-advanced-android-programming-project-starter/tree/master/starter).
 
