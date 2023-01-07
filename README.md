@@ -22,13 +22,11 @@ This project is part of the [Andrlid Kotlin Developer Nanodegree](https://vtsen.
 [https://console.cloud.google.com/apis/library/civicinfo.googleapis.com](https://console.cloud.google.com/apis/library/civicinfo.googleapis.com)
 
 ## Tech Stack
-- [MVVM Architecture](https://vtsen.hashnode.dev/mvc-vs-mvp-vs-mvvm-design-patterns)
+- Android View
+- MVVM Architecture
 - Motion Layout
 - Retrofit
 - Glide
 - Room Database
 - Location
 - Coroutine & Live Data
-
-## See Also
-For other projects, refer to my [Android projects page](https://vtsen.hashnode.dev/projects).
