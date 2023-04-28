@@ -157,7 +157,7 @@ class RepresentativesFragment : BaseFragment() {
 
                 locationResult.let {
 
-                    val address = geoCodeLocation(it.lastLocation)
+                    val address = geoCodeLocation(it.lastLocation!!)
                     if(address != null) {
                         viewModel.refreshByCurrentLocation(address)
                     }
