@@ -158,7 +158,9 @@ class RepresentativesFragment : BaseFragment() {
                 locationResult.let {
 
                     val address = geoCodeLocation(it.lastLocation)
-                    viewModel.refreshByCurrentLocation(address)
+                    if(address != null) {
+                        viewModel.refreshByCurrentLocation(address)
+                    }
 
                     fusedLocationProviderClient.removeLocationUpdates(this)
                 }
@@ -194,13 +196,13 @@ class RepresentativesFragment : BaseFragment() {
 
     }
 
-    private fun geoCodeLocation(location: Location): Address {
-        val geocoder = Geocoder(context, Locale.getDefault())
+    private fun geoCodeLocation(location: Location): Address? {
+        val geocoder = Geocoder(requireContext(), Locale.getDefault())
         return geocoder.getFromLocation(location.latitude, location.longitude, 1)
-            .map { address ->
+            ?.map { address ->
                 Address(address.thoroughfare, address.subThoroughfare, address.locality, address.adminArea, address.postalCode)
             }
-            .first()
+            ?.first()
     }
 
     private fun hideKeyboard() {
